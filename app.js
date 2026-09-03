@@ -688,8 +688,8 @@
       const kamalStation = stationPos(kamal);
       const noshStation = stationPos(nosh);
       const iustStation = stationPos(iust);
-      const kamalPass = Math.min(kamalStation + 8, noshStation - 8);
-      const noshPass = Math.min(noshStation + 8, iustStation - 7);
+      const kamalPass = kamalStation;
+      const noshPass = noshStation;
 
       // Acquire Kamal, pass it, then reveal the institution card.
       later(() => acquire(kamal), 260);
