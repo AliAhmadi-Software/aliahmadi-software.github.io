@@ -672,3 +672,46 @@ body[data-theme="light"] .reference-index{background:var(--surface2)}
   .reference-actions{align-items:stretch;flex-direction:column}
   .reference-actions a{justify-content:center}
 }
+
+/* Personal assessment profile */
+.assessment-section{padding-top:clamp(66px,8vw,104px)}
+.assessment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.assessment-card{position:relative;min-height:220px;padding:30px;display:grid;grid-template-columns:112px minmax(0,1fr);gap:26px;align-items:center;overflow:hidden;background:linear-gradient(135deg,rgba(var(--accent-rgb),.075),transparent 43%),var(--surface)}
+.assessment-card:before{content:"";position:absolute;inset:0;border-top:1px solid rgba(var(--accent-rgb),.62);border-radius:inherit;pointer-events:none}
+.assessment-card:after{content:"";position:absolute;right:-60px;bottom:-90px;width:210px;height:210px;border:1px solid rgba(var(--accent-rgb),.11);border-radius:50%;box-shadow:0 0 0 34px rgba(var(--accent-rgb),.025);pointer-events:none}
+.assessment-emblem{position:relative;z-index:1;width:104px;height:104px;display:grid;place-items:center;color:var(--gold)}
+.raven-emblem{border:1px solid rgba(var(--accent-rgb),.52);border-radius:46% 54% 50% 50%;background:radial-gradient(circle at 50% 45%,rgba(var(--accent-rgb),.13),transparent 63%),var(--bg2);box-shadow:0 0 0 8px rgba(var(--accent-rgb),.035)}
+.raven-emblem:before,.raven-emblem:after{content:"";position:absolute;top:23px;width:29px;height:51px;border-top:1px solid rgba(var(--accent-rgb),.62)}
+.raven-emblem:before{left:9px;border-radius:100% 0 0 0;transform:rotate(-32deg)}
+.raven-emblem:after{right:9px;border-radius:0 100% 0 0;transform:rotate(32deg)}
+.raven-emblem span{font:600 28px/1 var(--primary);letter-spacing:-.06em}
+.raven-emblem i{position:absolute;bottom:20px;width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:-14px 3px 0 rgba(var(--accent-rgb),.38),14px 3px 0 rgba(var(--accent-rgb),.38)}
+.mbti-emblem{grid-template-columns:repeat(2,36px);grid-template-rows:repeat(2,36px);gap:5px;transform:rotate(45deg)}
+.mbti-emblem span{display:grid;place-items:center;border:1px solid rgba(var(--accent-rgb),.42);border-radius:11px;background:var(--bg2);font:600 14px/1 var(--primary);transform:rotate(-45deg)}
+.mbti-emblem span:nth-child(2),.mbti-emblem span:nth-child(3){color:var(--soft);background:var(--surface2)}
+.assessment-copy{position:relative;z-index:1;min-width:0}
+.assessment-kicker{display:block;margin-bottom:13px;font-family:var(--secondary)!important;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+.assessment-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.assessment-heading h3{margin:0;font:500 clamp(27px,2.7vw,39px)/1 var(--primary);letter-spacing:-.04em;color:var(--text)}
+.assessment-heading strong{font:500 clamp(24px,2.25vw,34px)/1 var(--primary);color:var(--gold);white-space:nowrap}
+.assessment-result{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}
+.assessment-result span{font-family:var(--secondary)!important;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.assessment-result b{font:500 16px/1.2 var(--primary);color:var(--soft);white-space:nowrap}
+body[data-theme="light"] .raven-emblem,body[data-theme="light"] .mbti-emblem span{background:var(--surface2)}
+
+@media(max-width:920px){
+  .assessment-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .assessment-card{min-height:0;padding:24px 20px;grid-template-columns:78px minmax(0,1fr);gap:18px}
+  .assessment-emblem{width:74px;height:74px}
+  .raven-emblem:before,.raven-emblem:after{top:16px;width:21px;height:38px}
+  .raven-emblem:before{left:5px}.raven-emblem:after{right:5px}
+  .raven-emblem span{font-size:22px}.raven-emblem i{bottom:13px}
+  .mbti-emblem{grid-template-columns:repeat(2,27px);grid-template-rows:repeat(2,27px);gap:4px}
+  .mbti-emblem span{border-radius:8px;font-size:11px}
+  .assessment-heading{display:block;padding-bottom:13px}
+  .assessment-heading strong{display:block;margin-top:7px;font-size:23px}
+  .assessment-result{align-items:flex-start;flex-direction:column;gap:5px;margin-top:12px}
+  .assessment-result b{font-size:15px}
+}
