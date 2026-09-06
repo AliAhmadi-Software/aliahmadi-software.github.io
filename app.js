@@ -222,14 +222,16 @@
     const sections = [
       { id: 'research', label: '01 Research', settled: '01 · Research & publications — Ali Ahmadi' },
       { id: 'journey', label: '02 Journey', settled: '02 · Academic journey — Ali Ahmadi' },
-      { id: 'achievements', label: '03 Achievements', settled: '03 · Achievements — Ali Ahmadi' },
-      { id: 'certifications', label: 'Certificates', settled: 'Certifications — Ali Ahmadi' },
-      { id: 'terminal', label: '04 Terminal', settled: '04 · Terminal profile — Ali Ahmadi' },
-      { id: 'skills', label: '05 Expertise', settled: '05 · Skills & expertise — Ali Ahmadi' },
-      { id: 'toolkit', label: '06 Toolkit', settled: '06 · Technical toolkit — Ali Ahmadi' },
-      { id: 'projects', label: '07 Projects', settled: '07 · Projects — Ali Ahmadi' },
-      { id: 'ask-preview', label: '08 Ask Ali', settled: '08 · Ask Ali — Ali Ahmadi' },
-      { id: 'references', label: '10 Ref', settled: '10 · References — Ali Ahmadi' }
+      { id: 'experience', label: '03 Experience', settled: '03 · Research & teaching experience — Ali Ahmadi' },
+      { id: 'achievements', label: '04 Achievements', settled: '04 · Achievements — Ali Ahmadi' },
+      { id: 'assessments', label: '05 Profile', settled: '05 · Cognitive & personality profile — Ali Ahmadi' },
+      { id: 'certifications', label: '06 Certifications', settled: '06 · Certifications — Ali Ahmadi' },
+      { id: 'terminal', label: '07 Terminal', settled: '07 · Terminal profile — Ali Ahmadi' },
+      { id: 'skills', label: '08 Expertise', settled: '08 · Skills & expertise — Ali Ahmadi' },
+      { id: 'toolkit', label: '09 Toolkit', settled: '09 · Technical toolkit — Ali Ahmadi' },
+      { id: 'projects', label: '10 Projects', settled: '10 · Projects — Ali Ahmadi' },
+      { id: 'ask-preview', label: '11 Ask Ali', settled: '11 · Ask Ali — Ali Ahmadi' },
+      { id: 'references', label: '12 Ref', settled: '12 · References — Ali Ahmadi' }
     ];
     const activate = meta => {
       const key = meta?.id || 'hero';
