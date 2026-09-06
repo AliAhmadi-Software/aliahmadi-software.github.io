@@ -223,6 +223,7 @@
       { id: 'research', label: '01 Research', settled: '01 · Research & publications — Ali Ahmadi' },
       { id: 'journey', label: '02 Journey', settled: '02 · Academic journey — Ali Ahmadi' },
       { id: 'achievements', label: '03 Achievements', settled: '03 · Achievements — Ali Ahmadi' },
+      { id: 'certifications', label: 'Certificates', settled: 'Certifications — Ali Ahmadi' },
       { id: 'terminal', label: '04 Terminal', settled: '04 · Terminal profile — Ali Ahmadi' },
       { id: 'skills', label: '05 Expertise', settled: '05 · Skills & expertise — Ali Ahmadi' },
       { id: 'toolkit', label: '06 Toolkit', settled: '06 · Technical toolkit — Ali Ahmadi' },
@@ -798,6 +799,19 @@
     }));
     $('#vaultClose')?.addEventListener('click', () => dialog?.close());
     dialog?.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  });
+
+  safeInit('certification-sort', () => {
+    const grid = $('#certificationGrid');
+    if (!grid) return false;
+    const issuedTime = card => {
+      const timestamp = Date.parse(card.dataset.issued || '');
+      return Number.isFinite(timestamp) ? timestamp : 0;
+    };
+    $$('.certification-card[data-issued]', grid)
+      .sort((a, b) => issuedTime(b) - issuedTime(a))
+      .forEach(card => grid.append(card));
+    return true;
   });
 
   safeInit('terminals', () => {
