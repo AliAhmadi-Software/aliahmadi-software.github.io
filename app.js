@@ -618,7 +618,7 @@
       point.classList.toggle('visited', i <= index);
       point.classList.toggle('active', i === index);
     });
-    const showPreview = (point, keep = 1350) => {
+    const showPreview = (point, keep = 1350, persistent = false) => {
       if (!preview || !point) return;
       const image = $('#journeyPreviewImg');
       const kicker = $('#journeyPreviewKicker');
@@ -628,15 +628,17 @@
       if (kicker) kicker.textContent = point.dataset.kicker || '';
       if (title) title.textContent = point.dataset.title || '';
       if (note) note.textContent = point.dataset.note || '';
-      // Let the card rise near the milestone that was just passed, while clamping
-      // the edge stations so the card never leaves the stage.
+      // Regular milestones rise close to their station. The final IUST state is
+      // promoted to a centered, persistent feature card after Ali arrives.
       const cardX = Math.max(27, Math.min(73, stationPos(point)));
       preview.style.left = `${cardX}%`;
+      preview.classList.toggle('journey-preview-final', persistent);
       preview.classList.remove('show');
       void preview.offsetWidth;
       preview.classList.add('show');
       clearTimeout(previewTimer);
-      previewTimer = setTimeout(() => preview.classList.remove('show'), keep);
+      previewTimer = null;
+      if (!persistent) previewTimer = setTimeout(() => preview.classList.remove('show'), keep);
     };
     const setProgress = (position, duration = 1000) => {
       person.style.transitionDuration = `${duration}ms`;
@@ -669,7 +671,7 @@
       clearTimers();
       playing = false;
       replay?.classList.remove('show');
-      preview?.classList.remove('show');
+      preview?.classList.remove('show','journey-preview-final');
       radar.classList.remove('acquiring','locked');
       clearLocks();
       points.forEach(point => point.classList.remove('visited','active'));
@@ -709,11 +711,10 @@
       // Final acquisition: arrive at IUST and stay there. Future remains dotted.
       later(() => { preview?.classList.remove('show'); acquire(iust); }, 5720);
       later(() => travelTo(iustStation, 1280, () => {
-        radar.classList.remove('locked'); clearLocks(); setVisited(2); showPreview(iust, 1750); cue('success');
+        radar.classList.remove('locked'); clearLocks(); setVisited(2); showPreview(iust, 0, true); cue('success');
       }), 6420);
       later(() => {
         playing = false;
-        preview?.classList.remove('show');
         replay?.classList.add('show');
       }, 8850);
     };
@@ -725,7 +726,9 @@
       const station = stationPos(point);
       const destination = index < points.length - 1 ? Math.min(station + 8, index === 0 ? stationPos(points[1]) - 8 : stationPos(points[2]) - 7) : station;
       later(() => travelTo(destination, 700, () => {
-        radar.classList.remove('locked'); clearLocks(); setVisited(index); showPreview(point, 1600);
+        radar.classList.remove('locked'); clearLocks(); setVisited(index);
+        const isFinalStation = index === points.length - 1;
+        showPreview(point, isFinalStation ? 0 : 1600, isFinalStation);
       }), 500);
     }));
     replay?.addEventListener('click', play);
@@ -735,7 +738,7 @@
       const iust = points[2];
       setProgress(stationPos(iust), 0);
       setVisited(2);
-      showPreview(iust, 2400);
+      showPreview(iust, 0, true);
       replay?.classList.add('show');
       return true;
     }
